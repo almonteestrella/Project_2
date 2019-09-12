@@ -20,3 +20,14 @@ PSS establishments include:
 - NodeJS
 - Express
 - SASS
+
+### Settings
+
+Please create a .env file in the following format
+
+```
+host=
+user=
+pass=
+db=
+```
