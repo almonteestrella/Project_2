@@ -8,7 +8,10 @@ var sassMiddleware = require("node-sass-middleware");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/pss");
 
+var db = require("./models");
 var app = express();
+
+var PORT = process.env.PORT || 8080
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -46,5 +49,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+db.sequelize.sync({force: true}).then(function(){
+  app.listen(PORT, function(){
+    console.log('app up on port ' + PORT)
+  })
+})
 
 module.exports = app;
