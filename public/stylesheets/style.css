@@ -1,0 +1,15 @@
+body {
+  padding: 0;
+  margin: 0 auto; }
+
+html, body, #mapid {
+  height: 50vh;
+  width: 100vw; }
+
+#search-box {
+  width: 20em; }
+
+#search-options {
+  width: 90vw; }
+
+/*# sourceMappingURL=style.css.map */
