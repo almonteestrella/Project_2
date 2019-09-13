@@ -32,10 +32,11 @@
       id: 'mapbox.streets',
       accessToken: 'your.mapbox.access.token'
     }).addTo(mymap);
-
-    //icon
-    var OneIcon = L.icon({
-      iconUrl: '/images/icon-pointer.png',
+    
+    
+    //icon1
+    var IconOne = L.icon({
+      iconUrl: '/images/placeholder.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
       iconSize: [38, 95], // size of the icon
       shadowSize: [50, 64], // size of the shadow
@@ -46,14 +47,49 @@
 
     //pop up
     let latlng = L.latLng(43.6532, -79.38);  //to change to a marker location!
-    let marker = L.marker(latlng, { icon: OneIcon }).addTo(mymap);
+    let marker = L.marker(latlng, { icon: IconOne }).addTo(mymap);
 
     //to change to inspecrion history!
     let popupContent = "hello";
 
     marker.bindPopup(popupContent).openPopup();
 
+    //icon class
+    
+    var PlaceholderIcon = L.Icon.extend({
+      options: {
+        iconUrl: '/images/placeholder.png',
+        iconSize:     [38, 95],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+      }
+    });
 
+    var greenIcon = new PlaceholderIcon({iconUrl: '/images/green.png'}),
+	    blueIcon = new PlaceholderIcon({iconUrl: '/images/blue.png'}),
+	    orangeIcon = new PlaceholderIcon({iconUrl: '/images/orange.png'});
+      purpleIcon = new PlaceholderIcon({iconUrl: '/images/purple.png'});
+      redIcon = new PlaceholderIcon({iconUrl: '/images/red.png'});
+      pinkIcon = new PlaceholderIcon({iconUrl: '/images/pink.png'});
+      yellowIcon = new PlaceholderIcon({iconUrl: '/images/yellow.png'});
+      
+
+      L.icon = function (options) {
+	    return new L.Icon(options);
+      };
+
+
+      L.marker([43.6532, -79.38], {icon: greenIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: redIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: orangeIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: pinkIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: yellowIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: blueIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: purpleIcon}).addTo(mymap).bindPopup("Hello.");
+
+    
 
   </script>
 
