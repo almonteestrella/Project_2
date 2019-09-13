@@ -47,13 +47,13 @@
     });
 
     //pop up
-    let latlng = L.latLng(43.6532, -79.38);  //to change to a marker location!
-    let marker = L.marker(latlng, { icon: OneIcon }).addTo(mymap);
+    //let latlng = L.latLng(43.6532, -79.38);  //to change to a marker location!
+    //let marker = L.marker(latlng, { icon: OneIcon }).addTo(mymap);
 
     //to change to inspecrion history!
-    let popupContent = "hello";
+    //let popupContent = "hello";
 
-    marker.bindPopup(popupContent).openPopup();
+    //marker.bindPopup(popupContent).openPopup();
 
     function addToMap(records) {
       $.get("/api/r/" + records, function () {
@@ -68,7 +68,7 @@
         });
     }
 
-    addToMap(50)
+    addToMap(200)
 
   </script>
 
