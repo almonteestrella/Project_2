@@ -23,6 +23,7 @@
 
   <script>
 
+    //leaflet setup
     var mymap = L.map('mapid').setView([43.6532, -79.3832], 13);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2lubmFtb21lIiwiYSI6ImNrMGZxbTQ5ZjAyNzQzaXM4am90Mjg0NWkifQ.hbdP4yMD7PFsKvw-PRzVuA', {
@@ -31,6 +32,28 @@
       id: 'mapbox.streets',
       accessToken: 'your.mapbox.access.token'
     }).addTo(mymap);
+
+    //icon
+    var OneIcon = L.icon({
+      iconUrl: '/images/icon-pointer.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [38, 95], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    //pop up
+    let latlng = L.latLng(43.6532, -79.38);  //to change to a marker location!
+    let marker = L.marker(latlng, { icon: OneIcon }).addTo(mymap);
+
+    //to change to inspecrion history!
+    let popupContent = "hello";
+
+    marker.bindPopup(popupContent).openPopup();
+
+
 
   </script>
 
