@@ -50,7 +50,7 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-db.sequelize.sync({force: true}).then(function(){
+db.sequelize.sync({force: true, timestamps: false}).then(function(){
   app.listen(PORT, function(){
     console.log('app up on port ' + PORT)
   })
