@@ -13,19 +13,6 @@ router.get("/lat/:lat/lon/:lon/:cat?", function(req, res, next) {
 });
 
 // return list of items
-router.get("/r/:itmes", function(req, res, next) {
-  let dataset = require("../dataset/BodySafe.json");
-  let data = [];
-  for (i = 0; i < req.params.itmes; i++) {
-    data.push(dataset[i]);
-  }
-
-  // console.log(JSON.stringify(data))
-
-  res.send(JSON.stringify(data));
-});
-
-// return list of items
 router.get("/f/:count?", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
   let countReturn = dataset.length;
@@ -42,22 +29,7 @@ router.get("/f/:count?", function(req, res, next) {
       cat: dataset[i].servTypeDesc
     };
   }
-
-  // console.log(JSON.stringify(data))
-
   res.send(JSON.stringify(data));
 });
-
-router.get("/all", function(req, res, next) {
-  let dataset = require("../dataset/BodySafe.json");
-
-  // console.log(JSON.stringify(data))
-
-  res.send(JSON.stringify(dataset));
-});
-
-// category
-
-// area
 
 module.exports = router;
