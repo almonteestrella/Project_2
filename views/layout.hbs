@@ -46,6 +46,16 @@
       popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
+    var TwoIcon = L.icon({
+      iconUrl: '/images/a.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [38, 95], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
     //pop up
     //let latlng = L.latLng(43.6532, -79.38);  //to change to a marker location!
     //let marker = L.marker(latlng, { icon: OneIcon }).addTo(mymap);
@@ -62,11 +72,21 @@
         .done(function (data) {
           let items = jQuery.parseJSON(data)
           for(let key in items){
+            iconresult = switchCatego(items[key].cat)
+            console.log(items[key].cat)
             let latlng = L.latLng(items[key].lat, items[key].lon);  //to change to a marker location!
-            let marker = L.marker(latlng).addTo(mymap);
+            let marker = L.marker(latlng, { icon: iconresult }).addTo(mymap);
             marker.bindPopup(items[key].name);
           }
         });
+    }
+
+    function switchCatego(nameCatego){
+      let icon = OneIcon
+      if(nameCatego === 'Nails'){
+        icon = TwoIcon
+      }
+      return icon
     }
 
     addToMap(100)

@@ -29,7 +29,7 @@ router.get("/r/:itmes", function(req, res, next) {
 router.get("/f/:count?", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
   let countReturn = dataset.length;
-  if (req.params.count !== "all"){
+  if (req.params.count !== "all") {
     countReturn = req.params.count;
   }
   let data = {};
