@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS bodysafe;
+DROP DATABASE IF EXISTS torontoinspections;
 
-CREATE DATABASE bodysafe;
+CREATE DATABASE torontoinspections;
