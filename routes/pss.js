@@ -38,7 +38,8 @@ router.get("/f/:count?", function(req, res, next) {
     data["id" + dataset[i].servID] = {
       name: dataset[i].estName,
       lat: dataset[i].lat,
-      lon: dataset[i].lon
+      lon: dataset[i].lon,
+      cat: dataset[i].servTypeDesc
     };
   }
 
