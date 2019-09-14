@@ -5,7 +5,10 @@ module.exports = {
     database: process.env.db,
     host: process.env.host,
     dialect: "mysql",
-    operatorsAliases: false
+    operatorsAliases: false,
+    define: {
+      "timestamps": false
+    }
   },
   test: {
     username: process.env.user,
