@@ -1,4 +1,4 @@
-use torontoinspections;
+use kplocu4a07zeozix;
 
 INSERT INTO bodysafereviews VALUES
 ("PASS",NULL,72246.0,NULL,"M1G",1,"3770 LAWRENCE AVE E","PINK NAILS & SPA","Notice to Comply",-79.2142365413,556681,NULL,10005.0,"Single-use items used on one client only",NULL,"Conditional",NULL,43.76249604109999,7017,"2016-11-09T00:00:00","Nails",8460.0,2907806,3644116,767146,"Pass"),
