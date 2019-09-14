@@ -26,7 +26,7 @@
   <script>
 
     //leaflet setup
-    var mymap = L.map('mapid').setView([43.6532, -79.3832], 16);
+    var mymap = L.map('mapid').setView([43.6532, -79.3832], 12);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2lubmFtb21lIiwiYSI6ImNrMGZxbTQ5ZjAyNzQzaXM4am90Mjg0NWkifQ.hbdP4yMD7PFsKvw-PRzVuA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -34,37 +34,134 @@
       id: 'mapbox.streets',
       accessToken: 'your.mapbox.access.token'
     }).addTo(mymap);
+    
+    
+    //icons
 
-    //icon
-    var OneIcon = L.icon({
-      iconUrl: '/images/icon-pointer.png',
+      
+    
+    
+    var IconOne = L.icon({
+      iconUrl: '/images/red.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [38, 95], // size of the icon
+      iconSize: [25,40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
       popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
-    var TwoIcon = L.icon({
-      iconUrl: '/images/a.png',
+    var IconTwo = L.icon({
+      iconUrl: '/images/blue.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [38, 95], // size of the icon
+      iconSize: [25,40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
       popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
-    //pop up
-    //let latlng = L.latLng(43.6532, -79.38);  //to change to a marker location!
-    //let marker = L.marker(latlng, { icon: OneIcon }).addTo(mymap);
+    var IconThree = L.icon({
+      iconUrl: '/images/green.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [25,40], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
 
-    //to change to inspecrion history!
-    //let popupContent = "hello";
+    var IconFour = L.icon({
+      iconUrl: '/images/light blue.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [25,40], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
 
-    //marker.bindPopup(popupContent).openPopup();
+    var IconFive = L.icon({
+      iconUrl: '/images/orange.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [25,40], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
 
+    var IconSix = L.icon({
+      iconUrl: '/images/pink.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [25,40], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var IconSeven = L.icon({
+      iconUrl: '/images/purple.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [25,40], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var IconEight = L.icon({
+      iconUrl: '/images/yellow.png',
+      //shadowUrl: '/images/icon-shadow-pointer.png',
+      iconSize: [25,40], // size of the icon
+      shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    
+
+   
+   
+    //icon class
+    /*
+    var placeholder = L.Icon.extend({
+      options: {
+        iconUrl: '/images/placeholder.png',
+        iconSize:     [38, 95],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+      }
+    });
+    
+    var greenIcon = new PlaceholderIcon({iconUrl: '/images/green.png'}),
+	    blueIcon = new PlaceholderIcon({iconUrl: '/images/blue.png'}),
+	    orangeIcon = new PlaceholderIcon({iconUrl: '/images/orange.png'});
+      purpleIcon = new PlaceholderIcon({iconUrl: '/images/purple.png'});
+      redIcon = new PlaceholderIcon({iconUrl: '/images/red.png'});
+      pinkIcon = new PlaceholderIcon({iconUrl: '/images/pink.png'});
+      yellowIcon = new PlaceholderIcon({iconUrl: '/images/yellow.png'});
+      
+
+      L.icon = function (options) {
+	    return new L.Icon(options);
+      };
+
+      
+      L.marker([43.6532, -79.38], {icon: greenIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: redIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: orangeIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: pinkIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: yellowIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: blueIcon}).addTo(mymap).bindPopup("Hello.");
+      L.marker([43.6532, -79.38], {icon: purpleIcon}).addTo(mymap).bindPopup("Hello.");
+
+      */
+    
     function addToMap(count) {
       count = count || 'all'
       $.get("/api/f/" + count, function () {
@@ -76,20 +173,54 @@
             console.log(items[key].cat)
             let latlng = L.latLng(items[key].lat, items[key].lon);  //to change to a marker location!
             let marker = L.marker(latlng, { icon: iconresult }).addTo(mymap);
-            marker.bindPopup(items[key].name);
+            marker.bindPopup(items[key].cat + '<br>' + items[key].name);
           }
         });
     }
 
     function switchCatego(nameCatego){
-      let icon = OneIcon
-      if(nameCatego === 'Nails'){
-        icon = TwoIcon
+      let icon = ''
+      if(nameCatego === 'Aesthetics'){
+        icon = IconOne
       }
+      
+
+      else if(nameCatego === 'Barbering & Hairdressing'){
+        icon = IconTwo
+      }
+
+      else if(nameCatego === 'Body Piercing'){
+        icon = IconThree
+      }
+
+      else if(nameCatego === 'Ear Piercing'){
+        icon = IconFour
+      }
+
+      else if(nameCatego === 'Electrolysis'){
+        icon = IconFive
+      }
+
+      else if(nameCatego === 'Micropigmentation'){
+        icon = IconSix
+      }
+
+      else if(nameCatego === 'Nails'){
+        icon = IconSeven
+      }
+
+      else if(nameCatego === 'Tattooing'){
+        icon = IconEight
+      }
+
       return icon
     }
 
-    addToMap(100)
+   
+
+    addToMap(200)
+
+
 
   </script>
 
