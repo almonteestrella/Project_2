@@ -162,15 +162,14 @@
 
       */
     
-    function addToMap(count) {
-      count = count || 'all'
-      $.get("/api/f/" + count, function () {
+    function addToMap(category) {
+      category = category || ''
+      $.get("/api/db/" + category, function () {
       })
         .done(function (data) {
           let items = jQuery.parseJSON(data)
           for(let key in items){
             iconresult = switchCatego(items[key].cat)
-            console.log(items[key].cat)
             let latlng = L.latLng(items[key].lat, items[key].lon);  //to change to a marker location!
             let marker = L.marker(latlng, { icon: iconresult }).addTo(mymap);
             marker.bindPopup(items[key].cat + '<br>' + items[key].name);
@@ -218,7 +217,8 @@
 
    
 
-    addToMap(200)
+    addToMap('Nails')
+    
 
 
 
