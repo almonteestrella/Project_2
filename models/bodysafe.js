@@ -29,7 +29,6 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     est_status_desc: DataTypes.STRING,
-  });;
-  Review.sync();
+  });
   return Review;
 };;
