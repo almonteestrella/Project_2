@@ -66,7 +66,7 @@
           for(let key in items){
             let latlng = L.latLng(items[key].lat, items[key].lon);  //to change to a marker location!
             let marker = L.marker(latlng).addTo(mymap);
-            marker.bindPopup(items[key].name);
+            marker.bindPopup(items[key].cat + '<br>' + items[key].name );
           }
         });
     }
