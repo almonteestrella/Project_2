@@ -32,4 +32,37 @@ router.get("/f/:count?", function(req, res, next) {
   res.send(JSON.stringify(data));
 });
 
+// return list of items
+router.get("/db", function(req, res, next) {
+  db.review
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      group: ["est_name"]
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
+
+router.get("/db/:catego", function(req, res, next) {
+  let catego = req.params.catego;
+  db.review
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      where: {
+        serv_type_desc: [catego]
+      },
+      group: ["est_name"]
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
+
 module.exports = router;
