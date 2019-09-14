@@ -55,8 +55,9 @@
 
     //marker.bindPopup(popupContent).openPopup();
 
-    function addToMap() {
-      $.get("/api/f", function () {
+    function addToMap(count) {
+      count = count || 'all'
+      $.get("/api/f/" + count, function () {
       })
         .done(function (data) {
           let items = jQuery.parseJSON(data)
@@ -68,7 +69,7 @@
         });
     }
 
-    addToMap()
+    addToMap(100)
 
   </script>
 

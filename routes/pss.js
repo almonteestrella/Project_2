@@ -5,7 +5,7 @@ var fs = require("fs");
 var db = require("../models/index");
 
 /* GET users listing. */
-router.get("/lat/:lat/lon/:lon/:cat?", function (req, res, next) {
+router.get("/lat/:lat/lon/:lon/:cat?", function(req, res, next) {
   let lat = parseFloat(req.params.lat);
   let lon = parseFloat(req.params.lon);
   let cat = req.params.cat || "all";
@@ -13,7 +13,7 @@ router.get("/lat/:lat/lon/:lon/:cat?", function (req, res, next) {
 });
 
 // return list of items
-router.get("/r/:itmes", function (req, res, next) {
+router.get("/r/:itmes", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
   let data = [];
   for (i = 0; i < req.params.itmes; i++) {
@@ -26,12 +26,16 @@ router.get("/r/:itmes", function (req, res, next) {
 });
 
 // return list of items
-router.get("/f", function (req, res, next) {
+router.get("/f/:count?", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
+  let countReturn = dataset.length;
+  if (req.params.count !== "all"){
+    countReturn = req.params.count;
+  }
   let data = {};
-  for (i = 0; i < dataset.length; i++) {
+  for (i = 0; i < countReturn; i++) {
     // console.log('id'+dataset[i].servID)
-    data["id"+dataset[i].servID] = {
+    data["id" + dataset[i].servID] = {
       name: dataset[i].estName,
       lat: dataset[i].lat,
       lon: dataset[i].lon
@@ -43,7 +47,7 @@ router.get("/f", function (req, res, next) {
   res.send(JSON.stringify(data));
 });
 
-router.get("/all", function (req, res, next) {
+router.get("/all", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
 
   // console.log(JSON.stringify(data))
