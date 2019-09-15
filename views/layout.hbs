@@ -15,6 +15,8 @@
     crossorigin=""></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  {{!-- stamen map --}}
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
 </head>
 
 <body>
@@ -26,14 +28,23 @@
   <script>
 
     //leaflet setup
-    var mymap = L.map('mapid', { zoomControl: false }).setView([43.706635, -79.388750], 12);
+    //var mymap = L.map('mapid', { zoomControl: false }).setView([43.706635, -79.388750], 12);
 
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2lubmFtb21lIiwiYSI6ImNrMGZxbTQ5ZjAyNzQzaXM4am90Mjg0NWkifQ.hbdP4yMD7PFsKvw-PRzVuA', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox.streets',
-      accessToken: 'your.mapbox.access.token'
-    }).addTo(mymap);
+    //L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2lubmFtb21lIiwiYSI6ImNrMGZxbTQ5ZjAyNzQzaXM4am90Mjg0NWkifQ.hbdP4yMD7PFsKvw-PRzVuA', {
+
+    //attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    //maxZoom: 18,
+    //id: 'mapbox.streets',
+    //accessToken: 'pk.eyJ1IjoiY2lubmFtb21lIiwiYSI6ImNrMGZxbTQ5ZjAyNzQzaXM4am90Mjg0NWkifQ.hbdP4yMD7PFsKvw-PRzVuA'
+    //}).addTo(mymap);
+
+    var layer = new L.StamenTileLayer("toner");
+    var mymap = new L.Map("mapid", {
+      center: new L.LatLng(43.706635, -79.388750),
+      zoom: 12,
+      zoomControl: false
+    });
+    mymap.addLayer(layer);
 
     L.control.zoom({ position: 'bottomright' }).addTo(mymap);
 
@@ -42,33 +53,33 @@
     var IconOne = L.icon({
       iconUrl: '/images/pink.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'pink'
     });
 
     var IconTwo = L.icon({
       iconUrl: '/images/blue.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'blue'
     });
 
     var IconThree = L.icon({
       iconUrl: '/images/purple.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'purple'
     });
 
@@ -76,55 +87,55 @@
     var IconFour = L.icon({
       iconUrl: '/images/light blue.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'light-blue'
     });
 
     var IconFive = L.icon({
       iconUrl: '/images/orange.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'orange'
     });
 
     var IconSix = L.icon({
       iconUrl: '/images/red.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'red'
     });
 
     var IconSeven = L.icon({
       iconUrl: '/images/green.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'green'
     });
 
     var IconEight = L.icon({
       iconUrl: '/images/yellow.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
-      iconSize: [25, 40], // size of the icon
-      shadowSize: [50, 64], // size of the shadow
-      iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      iconSize: [18, 30], // size of the icon
+      //shadowSize: [50, 64], // size of the shadow
+      iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
+      //shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'yellow'
     });
 
