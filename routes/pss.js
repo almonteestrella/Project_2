@@ -75,6 +75,7 @@ router.get("/review/:name", function(req, res, next) {
         "lat",
         "lon",
         ["insp_date", "date"],
+        ["insp_status_desc", "status"],
         ["infr_type_desc", "infraction"],
         ["est_name", "name"],
         ["serv_type_desc", "cat"]
