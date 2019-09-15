@@ -40,13 +40,14 @@
 
     //icons
     var IconOne = L.icon({
-      iconUrl: '/images/red.png',
+      iconUrl: '/images/pink.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
       iconSize: [25, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'pink'
     });
 
     var IconTwo = L.icon({
@@ -56,18 +57,19 @@
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'blue'
     });
 
     var IconThree = L.icon({
-      iconUrl: '/images/green.png',
+      iconUrl: '/images/purple.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
       iconSize: [25, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'purple'
     });
 
 
@@ -78,7 +80,8 @@
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'light-blue'
     });
 
     var IconFive = L.icon({
@@ -88,27 +91,30 @@
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'orange'
     });
 
     var IconSix = L.icon({
-      iconUrl: '/images/pink.png',
+      iconUrl: '/images/red.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
       iconSize: [25, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'red'
     });
 
     var IconSeven = L.icon({
-      iconUrl: '/images/purple.png',
+      iconUrl: '/images/green.png',
       //shadowUrl: '/images/icon-shadow-pointer.png',
       iconSize: [25, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'green'
     });
 
     var IconEight = L.icon({
@@ -118,11 +124,9 @@
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+      className: 'yellow'
     });
-
-
-
 
 
     //icon class
@@ -171,12 +175,11 @@
           let items = jQuery.parseJSON(data)
 
           for (let key in items) {
-            iconresult = switchCatego(items[key].cat)
-            console.log(items[key].cat)
+            iconresult = switchCatego(items[key].cat);
             let latlng = L.latLng(items[key].lat, items[key].lon);  //to change to a marker location!
             let marker = L.marker(latlng, { icon: iconresult }).addTo(mymap);
             marker.bindPopup(items[key].cat + '<br>' + items[key].name);
-
+            $(`.leaflet-marker-icon`).hide();
           }
         });
 
@@ -185,42 +188,51 @@
         if (nameCatego === 'Aesthetics') {
           icon = IconOne
         }
-
         else if (nameCatego === 'Barbering & Hairdressing') {
           icon = IconTwo
         }
-
         else if (nameCatego === 'Body Piercing') {
           icon = IconThree
         }
-
         else if (nameCatego === 'Ear Piercing') {
           icon = IconFour
         }
-
         else if (nameCatego === 'Electrolysis') {
           icon = IconFive
         }
-
         else if (nameCatego === 'Micropigmentation') {
           icon = IconSix
         }
-
         else if (nameCatego === 'Nails') {
           icon = IconSeven
         }
-
         else if (nameCatego === 'Tattooing') {
           icon = IconEight
         }
-
         return icon
       }
-
     };
+    addToMap(700)
 
-    addToMap(200)
 
+    function showMarkers(input, img) {
+      $(input).change("click", function () {
+        if ($(this).is(':checked')) {
+          $(img).show();
+        } else {
+          $(img).hide();
+        }
+      });
+    }
+
+    showMarkers('input[id=aesthetics]', '.pink');
+    showMarkers('input[id=barbering]', '.blue');
+    showMarkers('input[id=bodyPiercing]', '.purple');
+    showMarkers('input[id=earPiercing]', '.light-blue');
+    showMarkers('input[id=electrolysis]', '.orange');
+    showMarkers('input[id=micropigmentation]', '.red');
+    showMarkers('input[id=nails]', '.green');
+    showMarkers('input[id=tattooing]', '.yellow');
 
 
 

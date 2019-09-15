@@ -7051,7 +7051,8 @@ header {
   text-align: center;
   font-weight: 300;
   font-size: 13px;
-  width: 17em;
+  width: 85vw;
+  max-width: 450px;
   border-radius: 50px;
   padding: 5px 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -7090,13 +7091,13 @@ header {
   margin: 2px 1px; }
 
 #search-options input[id="aesthetics"] + label {
-  border: 1.5px solid #fd6868; }
+  border: 1.5px solid pink; }
 
 #search-options input[id="barbering"] + label {
   border: 1.5px solid #68abf7; }
 
 #search-options input[id="bodyPiercing"] + label {
-  border: 1.5px solid #7dd87d; }
+  border: 1.5px solid #bc7ece; }
 
 #search-options input[id="earPiercing"] + label {
   border: 1.5px solid #7bd2ef; }
@@ -7105,22 +7106,22 @@ header {
   border: 1.5px solid #ffc65e; }
 
 #search-options input[id="micropigmentation"] + label {
-  border: 1.5px solid pink; }
+  border: 1.5px solid #fd6868; }
 
 #search-options input[id="nails"] + label {
-  border: 1.5px solid #bc7ece; }
+  border: 1.5px solid #7dd87d; }
 
 #search-options input[id="tattooing"] + label {
   border: 1.5px solid #ecec06; }
 
 #search-options input[id="aesthetics"]:checked + label {
-  background: #fd6868; }
+  background: pink; }
 
 #search-options input[id="barbering"]:checked + label {
   background: #68abf7; }
 
 #search-options input[id="bodyPiercing"]:checked + label {
-  background: #7dd87d; }
+  background: #bc7ece; }
 
 #search-options input[id="earPiercing"]:checked + label {
   background: #7bd2ef; }
@@ -7129,10 +7130,10 @@ header {
   background: #ffc65e; }
 
 #search-options input[id="micropigmentation"]:checked + label {
-  background: pink; }
+  background: #fd6868; }
 
 #search-options input[id="nails"]:checked + label {
-  background: #bc7ece; }
+  background: #7dd87d; }
 
 #search-options input[id="tattooing"]:checked + label {
   background: #ecec06; }
