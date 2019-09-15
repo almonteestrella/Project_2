@@ -49,7 +49,8 @@ router.get("/db", function(req, res, next) {
 
 router.get("/db/:catego", function(req, res, next) {
   let catego = req.params.catego;
-  db.review
+  console.log(db.bodysafereview);
+  db.bodysafereview
     .findAll({
       attributes: [
         "lat",
