@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Review = sequelize.define("review", {
+  var BodySafeReview = sequelize.define("bodysafereview", {
     est_status_cd: DataTypes.STRING,
     enfr_id: DataTypes.INTEGER,
     insp_id: DataTypes.INTEGER,
@@ -30,5 +30,5 @@ module.exports = function(sequelize, DataTypes) {
     },
     est_status_desc: DataTypes.STRING,
   });
-  return Review;
+  return BodySafeReview;
 };;
