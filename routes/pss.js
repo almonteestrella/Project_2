@@ -66,4 +66,24 @@ router.get("/db/:catego", function(req, res, next) {
     .then(results => res.send(JSON.stringify(results)));
 });
 
+router.get("/review/:name", function(req, res, next) {
+  let name = req.params.name;
+  console.log(db.bodysafereview);
+  db.bodysafereview
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["insp_date", "date"],
+        ["infr_type_desc", "infraction"],
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      where: {
+        est_name: [name]
+      }
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
+
 module.exports = router;
