@@ -82,7 +82,8 @@ router.get("/review/:name", function(req, res, next) {
       ],
       where: {
         est_name: [name]
-      }
+      },
+      order: [["insp_date", "ASC"]]
     })
     .then(results => res.send(JSON.stringify(results)));
 });
