@@ -55,7 +55,6 @@
       iconUrl: '/images/pink.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'pink'
     });
 
@@ -63,7 +62,6 @@
       iconUrl: '/images/blue.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'blue'
     });
 
@@ -71,7 +69,6 @@
       iconUrl: '/images/purple.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'purple'
     });
 
@@ -79,7 +76,6 @@
       iconUrl: '/images/light blue.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'light-blue'
     });
 
@@ -87,7 +83,6 @@
       iconUrl: '/images/orange.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'orange'
     });
 
@@ -95,7 +90,6 @@
       iconUrl: '/images/red.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'red'
     });
 
@@ -103,7 +97,6 @@
       iconUrl: '/images/green.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'green'
     });
 
@@ -111,7 +104,6 @@
       iconUrl: '/images/yellow.png',
       iconSize: [18, 30], // size of the icon
       iconAnchor: [9, 30], // point of the icon which will correspond to marker's location
-      //popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
       className: 'yellow'
     });
 
@@ -139,56 +131,60 @@
     }
 
 
-    function addToMap(count) {
-      count = count || 'all'
-      $.get("/api/f/" + count, function () {
+   function addToMap(category) {
+      category = category || ''
+      $.get("/api/db/" + category, function () {
       })
         .done(function (data) {
           let items = jQuery.parseJSON(data)
-
-          for (let key in items) {
-            iconresult = switchCatego(items[key].cat);
-            let latlng = L.latLng(items[key].lat, items[key].lon);
+          for(let key in items){
+            iconresult = switchCatego(items[key].cat)
+            let latlng = L.latLng(items[key].lat, items[key].lon); 
             let marker = L.marker(latlng, { icon: iconresult }).addTo(mymap);
 
-            //hide all markers first
-            $(`.leaflet-marker-icon`).hide();
-
-            //always open popup window below the search options
-            marker.addEventListener("click", function (e) {
-              L.popup({
-                autoPanPaddingTopLeft: [0, 200],
-                offset: [0, -23]
-              })
-                .setLatLng(this.getLatLng())
-                .setContent(items[key].cat + '<br>' + items[key].name)
-                .openOn(mymap);
-            });
+            //always open popup window below the search options
+            marker.addEventListener("click", function (e) {
+              L.popup({
+                autoPanPaddingTopLeft: [0, 200],
+                offset: [0, -23]
+              })
+                .setLatLng(this.getLatLng())
+                .setContent(items[key].cat + '<br>' + items[key].name)
+                .openOn(mymap);
+            });
 
           }
         });
-    };
-    addToMap(700)
+    }
 
 
-    function showMarkers(input, img) {
+    function showMarkers(input, img, category) {
       $(input).change("click", function () {
+        let catAlreadyPulled = [];
+
         if ($(this).is(':checked')) {
-          $(img).show();
+          if (catAlreadyPulled.includes(category)) {
+            $(img).show();
+          } else {
+            addToMap(category);
+            catAlreadyPulled.push(category);
+          }
+
         } else {
           $(img).hide();
         }
+        
       });
     }
 
-    showMarkers('input[id=aesthetics]', '.pink');
-    showMarkers('input[id=barbering]', '.blue');
-    showMarkers('input[id=bodyPiercing]', '.purple');
-    showMarkers('input[id=earPiercing]', '.light-blue');
-    showMarkers('input[id=electrolysis]', '.orange');
-    showMarkers('input[id=micropigmentation]', '.red');
-    showMarkers('input[id=nails]', '.green');
-    showMarkers('input[id=tattooing]', '.yellow');
+    showMarkers('input[id=aesthetics]', '.pink', 'Aesthetics');
+    showMarkers('input[id=barbering]', '.blue', 'Barbering & Hairdressing');
+    showMarkers('input[id=bodyPiercing]', '.purple', 'Body Piercing');
+    showMarkers('input[id=earPiercing]', '.light-blue', 'Ear Piercing');
+    showMarkers('input[id=electrolysis]', '.orange', 'Electrolysis');
+    showMarkers('input[id=micropigmentation]', '.red', 'Micropigmentation');
+    showMarkers('input[id=nails]', '.green', 'Nails');
+    showMarkers('input[id=tattooing]', '.yellow', 'Tattooing');
 
 
   </script>
