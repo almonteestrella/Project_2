@@ -13,19 +13,6 @@ router.get("/lat/:lat/lon/:lon/:cat?", function(req, res, next) {
 });
 
 // return list of items
-router.get("/r/:itmes", function(req, res, next) {
-  let dataset = require("../dataset/BodySafe.json");
-  let data = [];
-  for (i = 0; i < req.params.itmes; i++) {
-    data.push(dataset[i]);
-  }
-
-  // console.log(JSON.stringify(data))
-
-  res.send(JSON.stringify(data));
-});
-
-// return list of items
 router.get("/f/:count?", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
   let countReturn = dataset.length;
@@ -42,22 +29,63 @@ router.get("/f/:count?", function(req, res, next) {
       cat: dataset[i].servTypeDesc
     };
   }
-
-  // console.log(JSON.stringify(data))
-
   res.send(JSON.stringify(data));
 });
 
-router.get("/all", function(req, res, next) {
-  let dataset = require("../dataset/BodySafe.json");
-
-  // console.log(JSON.stringify(data))
-
-  res.send(JSON.stringify(dataset));
+// return list of items
+router.get("/db", function(req, res, next) {
+  db.review
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      group: ["est_name"]
+    })
+    .then(results => res.send(JSON.stringify(results)));
 });
 
-// category
+router.get("/db/:catego", function(req, res, next) {
+  let catego = req.params.catego;
+  console.log(db.bodysafereview);
+  db.bodysafereview
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      where: {
+        serv_type_desc: [catego]
+      },
+      group: ["est_name"]
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
 
-// area
+router.get("/review/:name", function(req, res, next) {
+  let name = req.params.name;
+  console.log(db.bodysafereview);
+  db.bodysafereview
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["insp_date", "date"],
+        ["insp_status_desc", "status"],
+        ["infr_type_desc", "infraction"],
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      where: {
+        est_name: [name]
+      },
+      order: [["insp_date", "ASC"]]
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
 
 module.exports = router;
