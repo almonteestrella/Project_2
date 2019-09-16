@@ -61,7 +61,7 @@ router.get("/db/:catego", function(req, res, next) {
       where: {
         serv_type_desc: [catego]
       },
-      group: ["est_name"]
+      group: ["lat", "lon", "est_name", "serv_type_desc"]
     })
     .then(results => res.send(JSON.stringify(results)));
 });
