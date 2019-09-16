@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bai+Jamjuree:300,700|Poller+One&display=swap');
 @import "../../node_modules/bootstrap/scss/_functions.scss";
 @import "variables.scss";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
@@ -26,12 +26,14 @@ header
 	transform: translate(-50%, 0);
 	z-index: 2;
 	h1
-		font-family: 'Bai Jamjuree', serif;
+		font-family: 'Poller One', cursive;
 		margin: 5px 0 0;
 		font-size: 30px;
+		font-style: italic;
 		font-weight: 700;
 		letter-spacing: 0.05em;
-		text-shadow: -0.09em 0.06em 0px #fff, -0.17em 0.13em 0px rgba(0, 0, 0, 0.4);
+		transform: scale(1.1, 1);
+		text-shadow: -0.08em 0.09em 0px #fff, -0.14em 0.16em 0px rgba(0, 0, 0, 0.4);
 
 #search-box
 	text-align: center;
@@ -56,6 +58,7 @@ header
 	text-align: center;
 	margin: 0 auto;
 	width: 95vw;
+	max-width: 860px;
 	font-weight: 300;
 	position: absolute;
 	top: 87px;
