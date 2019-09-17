@@ -61,8 +61,8 @@ router.get("/db/:catego", function(req, res, next) {
         ["serv_type_desc", "cat"]
       ],
       where: {
-        serv_type_desc: [catego],
-        insp_date: { [Op.gte]: "2019-01-01" }
+        serv_type_desc: [catego]
+        // insp_date: { [Op.gte]: "2019-01-01" }
       },
       group: ["lat", "lon", "est_name", "serv_type_desc"]
     })
@@ -87,8 +87,8 @@ router.get("/search/:name", function(req, res, next) {
         [Op.or]: {
           est_name: { [Op.like]: `%${name}%` },
           addr: { [Op.like]: `%${name}%` }
-        },
-        insp_date: { [Op.gte]: "2019-01-01" }
+        }
+        // insp_date: { [Op.gte]: "2019-01-01" }
       },
       group: ["lat", "lon", "addr", "est_name", "serv_type_desc"]
     })
