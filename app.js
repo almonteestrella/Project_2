@@ -7,7 +7,7 @@ var sassMiddleware = require("node-sass-middleware");
 
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/pss");
-var db = require("./models")
+var db = require("./models");
 var app = express();
 
 // view engine setup
@@ -27,6 +27,7 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/p", express.static("presentation"));
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
@@ -47,5 +48,5 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-db.sequelize.sync({fore: true})
+db.sequelize.sync({ fore: true });
 module.exports = app;
