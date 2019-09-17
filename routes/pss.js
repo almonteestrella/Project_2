@@ -95,6 +95,31 @@ router.get("/search/:name", function(req, res, next) {
     .then(results => res.send(JSON.stringify(results)));
 });
 
+router.get("/s2/:name", function(req, res, next) {
+  let name = req.params.name.toUpperCase();
+  const Op = require("Sequelize").Op;
+
+  // console.log(db.bodysafereview);
+  db.bodysafereview
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        "addr",
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      where: {
+        [Op.or]: {
+          est_name: { [Op.like]: `%${name}%` },
+          addr: { [Op.like]: `%${name}%` }
+        }
+      },
+      group: ["lat", "lon", "addr", "est_name", "serv_type_desc"]
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
+
 router.get("/review/:name", function(req, res, next) {
   let name = req.params.name;
   db.bodysafereview
