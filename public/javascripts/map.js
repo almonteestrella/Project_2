@@ -125,7 +125,6 @@ function addToMap(category) {
         marker.addEventListener("click", function (e) {
 
           let markerClicked = this;
-          let date = "";
           let infraction = "";
           let status = "";
           let content = "";
@@ -134,16 +133,16 @@ function addToMap(category) {
           $.get("/api/review/" + items[key].name, function () {
           })
             .done(function (data)  {
-              date = jQuery.parseJSON(data)[0].date.slice(0, 10);
-              status = jQuery.parseJSON(data)[0].status;
-              infraction = jQuery.parseJSON(data)[0].infraction;
+              let items_2 = jQuery.parseJSON(data);
+              status = items_2[0].status;
+              infraction = items_2[0].infraction;
               if( infraction === null) {
                 infraction = "No infraction!";
               }
               content = `<div class="cat">${items[key].cat}</div>
               <div class="name">${items[key].name}</div>
               <div class="status">${status}</div>
-              <div>${date}<br>${infraction}</div>`;
+              <div>${infraction}</div>`;
             })
               .then(function() {
 
@@ -156,7 +155,7 @@ function addToMap(category) {
                   .setLatLng(markerClicked.getLatLng())
                   .setContent(content)
                   .openOn(mymap);
-                });
+              });
         });
       }
 
