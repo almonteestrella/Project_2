@@ -49,7 +49,9 @@ router.get("/db", function(req, res, next) {
 
 router.get("/db/:catego", function(req, res, next) {
   let catego = req.params.catego;
-  console.log(db.bodysafereview);
+  const Op = require("Sequelize").Op;
+
+  // console.log(db.bodysafereview);
   db.bodysafereview
     .findAll({
       attributes: [
@@ -59,7 +61,30 @@ router.get("/db/:catego", function(req, res, next) {
         ["serv_type_desc", "cat"]
       ],
       where: {
-        serv_type_desc: [catego]
+        serv_type_desc: [catego],
+        insp_date: { [Op.gte]: "2019-01-01" }
+      },
+      group: ["lat", "lon", "est_name", "serv_type_desc"]
+    })
+    .then(results => res.send(JSON.stringify(results)));
+});
+
+router.get("/search/:name", function(req, res, next) {
+  let name = req.params.name.toUpperCase();
+  const Op = require("Sequelize").Op;
+
+  // console.log(db.bodysafereview);
+  db.bodysafereview
+    .findAll({
+      attributes: [
+        "lat",
+        "lon",
+        ["est_name", "name"],
+        ["serv_type_desc", "cat"]
+      ],
+      where: {
+        est_name: { [Op.like]: `%${name}%` },
+        insp_date: { [Op.gte]: "2019-01-01" }
       },
       group: ["lat", "lon", "est_name", "serv_type_desc"]
     })
@@ -68,7 +93,6 @@ router.get("/db/:catego", function(req, res, next) {
 
 router.get("/review/:name", function(req, res, next) {
   let name = req.params.name;
-  console.log(db.bodysafereview);
   db.bodysafereview
     .findAll({
       attributes: [
