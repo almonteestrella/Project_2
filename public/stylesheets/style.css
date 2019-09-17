@@ -4881,18 +4881,6 @@ button.bg-dark:focus {
 .embed-responsive-1by1::before {
   padding-top: 100%; }
 
-.embed-responsive-21by9::before {
-  padding-top: 42.85714%; }
-
-.embed-responsive-16by9::before {
-  padding-top: 56.25%; }
-
-.embed-responsive-4by3::before {
-  padding-top: 75%; }
-
-.embed-responsive-1by1::before {
-  padding-top: 100%; }
-
 .flex-row {
   flex-direction: row !important; }
 
@@ -7086,7 +7074,7 @@ header {
 #search-options {
   text-align: center;
   margin: 0 auto;
-  width: 95vw;
+  width: 96vw;
   max-width: 860px;
   font-weight: 300;
   position: absolute;
@@ -7106,7 +7094,7 @@ header {
   background-color: white;
   border-radius: 25px;
   padding: 3px 10px;
-  margin: 2px 1px; }
+  margin: 2px 0px; }
 
 #search-options input[id="aesthetics"] + label {
   border: 1.5px solid pink; }
@@ -7155,5 +7143,14 @@ header {
 
 #search-options input[id="tattooing"]:checked + label {
   background: #ecec06; }
+
+.leaflet-popup-content {
+  font-family: 'Bai Jamjuree', sans-serif;
+  font-size: 14px; }
+  .leaflet-popup-content .name {
+    font-weight: 600;
+    font-size: 16px; }
+  .leaflet-popup-content .status {
+    margin: 5px 0px; }
 
 /*# sourceMappingURL=style.css.map */
