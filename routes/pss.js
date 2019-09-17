@@ -79,14 +79,18 @@ router.get("/search/:name", function(req, res, next) {
       attributes: [
         "lat",
         "lon",
+        "addr",
         ["est_name", "name"],
         ["serv_type_desc", "cat"]
       ],
       where: {
-        est_name: { [Op.like]: `%${name}%` },
+        [Op.or]: {
+          est_name: { [Op.like]: `%${name}%` },
+          addr: { [Op.like]: `%${name}%` }
+        },
         insp_date: { [Op.gte]: "2019-01-01" }
       },
-      group: ["lat", "lon", "est_name", "serv_type_desc"]
+      group: ["lat", "lon", "addr", "est_name", "serv_type_desc"]
     })
     .then(results => res.send(JSON.stringify(results)));
 });
