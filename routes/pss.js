@@ -34,7 +34,7 @@ router.get("/f/:count?", function(req, res, next) {
 
 // return list of items
 router.get("/db", function(req, res, next) {
-  db.review
+  db.bodysafereview
     .findAll({
       attributes: [
         "lat",
