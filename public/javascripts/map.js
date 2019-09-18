@@ -127,16 +127,20 @@ function addToMap(category) {
           .done(function(data) {
             let items_2 = jQuery.parseJSON(data);
             let status = (log = "");
-          
+
             items_2.forEach(element => {
-              if (element.cat === `${items[key].cat}`) {
+              if (
+                element.cat === `${items[key].cat}` &&
+                element.lat === items[key].lat &&
+                element.lon === items[key].lon
+              ) {
                 console.log(element);
                 status = element.status;
                 log +=
                   element.date.slice(0, 10) +
-                  ' | <span class="' +
+                  " | <span class=\"" +
                   element.status.toLowerCase() +
-                  '">' +
+                  "\">" +
                   element.status.toLowerCase() +
                   "</span> | " +
                   (element.infraction ? element.infraction : "👍") +
