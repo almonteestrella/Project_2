@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
-    "start": "node ./bin/www"
+    "start": "npm i && node ./bin/www"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
