@@ -4,14 +4,6 @@ var fs = require("fs");
 
 var db = require("../models/index");
 
-/* GET users listing. */
-router.get("/lat/:lat/lon/:lon/:cat?", function(req, res, next) {
-  let lat = parseFloat(req.params.lat);
-  let lon = parseFloat(req.params.lon);
-  let cat = req.params.cat || "all";
-  res.send("lat: " + lat + ", long: " + lon + ", category: " + cat);
-});
-
 // return list of items
 router.get("/f/:count?", function(req, res, next) {
   let dataset = require("../dataset/BodySafe.json");
@@ -49,7 +41,6 @@ router.get("/db", function(req, res, next) {
 
 router.get("/db/:catego", function(req, res, next) {
   let catego = req.params.catego;
-  const Op = require("Sequelize").Op;
 
   // console.log(db.bodysafereview);
   db.bodysafereview
@@ -71,9 +62,6 @@ router.get("/db/:catego", function(req, res, next) {
 
 router.get("/search/:name", function(req, res, next) {
   let name = req.params.name.toUpperCase();
-  const Op = require("Sequelize").Op;
-
-  // console.log(db.bodysafereview);
   db.bodysafereview
     .findAll({
       attributes: [
@@ -84,9 +72,9 @@ router.get("/search/:name", function(req, res, next) {
         ["serv_type_desc", "cat"]
       ],
       where: {
-        [Op.or]: {
-          est_name: { [Op.like]: `%${name}%` },
-          addr: { [Op.like]: `%${name}%` }
+        $or: {
+          est_name: { $like: `%${name}%` },
+          addr: { $like: `%${name}%` }
         }
         // insp_date: { [Op.gte]: "2019-01-01" }
       },
@@ -97,7 +85,6 @@ router.get("/search/:name", function(req, res, next) {
 
 router.get("/s2/:name", function(req, res, next) {
   let name = req.params.name.toUpperCase();
-  const Op = require("Sequelize").Op;
 
   // console.log(db.bodysafereview);
   db.bodysafereview
@@ -110,9 +97,9 @@ router.get("/s2/:name", function(req, res, next) {
         ["serv_type_desc", "cat"]
       ],
       where: {
-        [Op.or]: {
-          est_name: { [Op.like]: `%${name}%` },
-          addr: { [Op.like]: `%${name}%` }
+        $or: {
+          est_name: { $like: `%${name}%` },
+          addr: { $like: `%${name}%` }
         }
       },
       group: ["lat", "lon", "addr", "est_name", "serv_type_desc"]
