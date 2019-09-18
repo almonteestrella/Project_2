@@ -5,7 +5,7 @@ $(function() {
     let val = $("#search-box")
       .val()
       .trim();
-      
+
     if (val !== "") {
       $.get("/api/s2/" + val, function() {}).done(function(data) {
         let items = jQuery.parseJSON(data);
@@ -25,17 +25,29 @@ $(function() {
             //get inspection history
             $.get("/api/review/" + items[key].name, function () {
             })
-              .done(function (data)  {
-                let items_2 = jQuery.parseJSON(data);
-                status = items_2[0].status;
-                infraction = items_2[0].infraction;
-                if( infraction === null) {
-                  infraction = "No infraction!";
+            .done(function(data) {
+              let items_2 = jQuery.parseJSON(data);
+              let status = (log = "");
+            
+              items_2.forEach(element => {
+                if (element.cat === `${items[key].cat}`) {
+                  console.log(element);
+                  status = element.status;
+                  log +=
+                    element.date.slice(0, 10) +
+                    ' | <span class="' +
+                    element.status.toLowerCase() +
+                    '">' +
+                    element.status.toLowerCase() +
+                    "</span> | " +
+                    (element.infraction ? element.infraction : "👍") +
+                    "<br>";
                 }
-                content = `<div class="cat">${items[key].cat}</div>
+              });
+              content = `<div class="cat">${items[key].cat}</div>
                 <div class="name">${items[key].name}</div>
                 <div class="status">${status}</div>
-                <div>${infraction}</div>`;
+                <div>${log}</div>`;
               })
                 .then(function() {
 
