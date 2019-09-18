@@ -127,6 +127,7 @@ function addToMap(category) {
           .done(function(data) {
             let items_2 = jQuery.parseJSON(data);
             let status = (log = "");
+          
             items_2.forEach(element => {
               if (element.cat === `${items[key].cat}`) {
                 console.log(element);
