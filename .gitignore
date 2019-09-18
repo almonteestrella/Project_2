@@ -64,4 +64,5 @@ typings/
 .vscode/
 
 # css
-public/stylesheets/*.css*
+public/stylesheets/style.css
+public/stylesheets/style.css.map
