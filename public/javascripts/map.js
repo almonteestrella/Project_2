@@ -155,9 +155,10 @@ function addToMap(category) {
           .then(function() {
             //define popup window
             popup = L.popup({
-              autoPanPaddingTopLeft: [0, 200], //open popup window below the search options
+              autoPanPaddingTopLeft: [0, 180], //open popup window below the search options
               offset: [0, -23], //adjust the distance from the marker
-              maxWidth: 270
+              maxWidth: 500,
+              maxHeight: 280
             })
               .setLatLng(markerClicked.getLatLng())
               .setContent(content)

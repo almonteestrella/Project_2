@@ -34,6 +34,8 @@ header
 		letter-spacing: 0.05em;
 		transform: scale(1.1, 1);
 		text-shadow: -0.08em 0.09em 0px #fff, -0.14em 0.16em 0px rgba(0, 0, 0, 0.4);
+		@include media-breakpoint-up(sm)
+			font-size: 35px;
 
 #search-box
 	text-align: center;
@@ -50,6 +52,9 @@ header
 	left: 50%;
 	transform: translate(-50%, 0);
 	z-index: 2;
+	@include media-breakpoint-up(sm)
+		font-size: 16px;
+		top: 45px;
 
 #search-box:focus::placeholder
 	color: transparent;
@@ -65,6 +70,9 @@ header
 	left: 50%;
 	transform: translate(-50%, 0);
 	z-index: 2;
+	@include media-breakpoint-up(sm)
+		top: 100px;
+		max-width: 940px;
 
 #search-options 
 	input[type="checkbox"]
@@ -78,6 +86,8 @@ header
 		border-radius: 25px;
 		padding: 3px 10px;
 		margin: 2px 0px;
+		@include media-breakpoint-up(sm)
+			font-size: 15px;
 
 #search-options
 	input[id="aesthetics"] + label
@@ -120,6 +130,8 @@ header
 .leaflet-popup-content 
 	font-family: 'Bai Jamjuree', sans-serif;
 	font-size: 14px;
+	@include media-breakpoint-down(sm)
+		max-width: 270px;
 	.name
 		font-weight: 600;
 		font-size: 16px;
@@ -128,30 +140,35 @@ header
 
 #info
 	position: absolute;
-	left: 32px;
+	left: 12px;
 	bottom: 32px;
 	z-index: 1000;
 	font-size: 2rem;
+	@include media-breakpoint-up(sm)
+		left: 22px;
+		bottom: 12px;
 	a
 		text-decoration: none;
 	img 
-		width: 50px;
+		width: 40px;
+		@include media-breakpoint-up(sm)
+			width: 50px;
 
 .conditional
 	background: $conditional;
 	border-radius: 10px;
-	padding: 2px 6px;
+	padding: 1px 6px;
 	font-size: 12px;
 
 .pass
 	background: $pass;
 	border-radius: 10px;
-	padding: 2px 6px;
+	padding: 1px 6px;
 	font-size: 12px;
 
 .closed
 	background: $closed;
 	border-radius: 10px;
-	padding: 2px 6px;
+	padding: 1px 6px;
 	font-size: 12px;
 	color: white;
